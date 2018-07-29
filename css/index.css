@@ -151,6 +151,9 @@
   bottom: 150px;
 }
 
+#hero-image-block .character-block .heal-text.healed {
+  bottom: 150px;
+}
 #hero-image-block .skill-block {
   position: relative;
 }
