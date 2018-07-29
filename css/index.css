@@ -135,6 +135,17 @@
   transition: bottom 500ms;
 }
 
+#hero-image-block .character-block .heal-text {
+  position: absolute;
+  font-size: 60px;
+  color: green;
+  width: 100%;
+  left: 0px;
+  bottom: 50px;
+  font-family: "Contrail One";
+  transition: bottom 500ms;
+}
+
 #hero-image-block    .character-block .hurt-text.attacked,
 #monster-image-block .character-block .hurt-text.attacked {
   bottom: 150px;
