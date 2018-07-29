@@ -99,9 +99,16 @@ class Monster extends BaseCharacter {
 }
 
 function addSkillEvent() {
-  var skill = document.getElementById("skill")
+  var skill = document.getElementById("skill");
   skill.onclick = function() {
     heroAttack();
+  }
+}
+
+function addHealEvent() {
+  var heal = document.getElementById("heal");
+  heal.onclick = function() {
+    heroHeal();
   }
 }
 
@@ -111,6 +118,7 @@ function endTurn() {
   document.getElementById("round-num").textContent = rounds;
   if(rounds < 1) {
     // 「遊戲結束」空白區
+    finish();
   }
 }
 
@@ -146,6 +154,39 @@ function heroAttack() {
   }, 1100);
 }
 
+function heroHeal() {
+  document.getElementsByClassName("skill-block")[0].style.display = "none";
+
+  if (hero.hp > (hero.maxHp - 30)) {
+    hero.hp = hero.maxHp;
+  } else {
+    hero.hp = hero.hp + 30;
+  }
+  hero.updateHtml(hero.hpElement, hero.hurtElement);
+
+  setTimeout(function() {
+    if (monster.alive) {
+      monster.element.classList.add("attacking");
+      setTimeout(function() {
+        monster.attack(hero);
+        monster.element.classList.remove("attacking");
+        endTurn();
+        if (hero.alive == false) {
+          // 「遊戲結束」空白區
+          finish();
+        } else {
+          document.getElementsByClassName("skill-block")[0].style.display = "block";
+        }
+      }, 500);
+    } else {
+      // Monster die「遊戲結束」空白區
+      finish();
+    }
+  }, 100);
+
+}
+
+
 function finish() {
   var dialog = document.getElementById("dialog")
   dialog.style.display = "block";
@@ -158,3 +199,4 @@ function finish() {
 var hero = new Hero("Stanley", 130, 30);
 var monster = new Monster("Skeleton", 130, 10);
 addSkillEvent();
+addHealEvent();
