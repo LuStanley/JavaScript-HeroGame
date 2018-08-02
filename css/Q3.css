@@ -116,6 +116,7 @@
 
 #hero-image-block    .character-block .effect-image,
 #monster-image-block .character-block .effect-image {
+  display: none;
   position: absolute;
   left: 60px;
   bottom: 0px;
