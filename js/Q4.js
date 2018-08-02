@@ -239,6 +239,15 @@ function finish() {
   }
 }
 
+document.onkeyup = function(event) {
+  var key = String.fromCharCode(event.keyCode);
+  if (key == "A") {
+    heroAttack();
+  } else if (key == "D") {
+    heroHeal();
+  }
+}
+
 
 var hero = new Hero("Stanley", 130, 30);
 var monster = new Monster("Skeleton", 130, 10);
